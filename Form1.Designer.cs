@@ -77,26 +77,26 @@
             this.도움말HToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1250, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1250, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 파일FToolStripMenuItem
             // 
             this.파일FToolStripMenuItem.Name = "파일FToolStripMenuItem";
-            this.파일FToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.파일FToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.파일FToolStripMenuItem.Text = "파일(F)";
             // 
             // dBToolStripMenuItem
             // 
             this.dBToolStripMenuItem.Name = "dBToolStripMenuItem";
-            this.dBToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.dBToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.dBToolStripMenuItem.Text = "편집(E)";
             // 
             // 보기VToolStripMenuItem
             // 
             this.보기VToolStripMenuItem.Name = "보기VToolStripMenuItem";
-            this.보기VToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.보기VToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.보기VToolStripMenuItem.Text = "보기(V)";
             // 
             // 프로젝트PToolStripMenuItem
@@ -107,7 +107,7 @@
             this.dB저장SToolStripMenuItem,
             this.dB닫기CToolStripMenuItem});
             this.프로젝트PToolStripMenuItem.Name = "프로젝트PToolStripMenuItem";
-            this.프로젝트PToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.프로젝트PToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.프로젝트PToolStripMenuItem.Text = "데이터(D)";
             // 
             // dB열기OToolStripMenuItem
@@ -116,56 +116,56 @@
             this.mnu_DBOPEN,
             this.mnu_CSVOPEN});
             this.dB열기OToolStripMenuItem.Name = "dB열기OToolStripMenuItem";
-            this.dB열기OToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dB열기OToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.dB열기OToolStripMenuItem.Text = "열기(O)";
             // 
             // mnu_DBOPEN
             // 
             this.mnu_DBOPEN.Name = "mnu_DBOPEN";
-            this.mnu_DBOPEN.Size = new System.Drawing.Size(224, 26);
+            this.mnu_DBOPEN.Size = new System.Drawing.Size(97, 22);
             this.mnu_DBOPEN.Text = "DB";
             this.mnu_DBOPEN.Click += new System.EventHandler(this.mnu_DBOPEN_Click);
             // 
             // mnu_CSVOPEN
             // 
             this.mnu_CSVOPEN.Name = "mnu_CSVOPEN";
-            this.mnu_CSVOPEN.Size = new System.Drawing.Size(224, 26);
+            this.mnu_CSVOPEN.Size = new System.Drawing.Size(97, 22);
             this.mnu_CSVOPEN.Text = "CSV";
             this.mnu_CSVOPEN.Click += new System.EventHandler(this.mnu_CSVOPEN_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
             // 
             // dB저장SToolStripMenuItem
             // 
             this.dB저장SToolStripMenuItem.Name = "dB저장SToolStripMenuItem";
-            this.dB저장SToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dB저장SToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.dB저장SToolStripMenuItem.Text = "DB 저장(S)";
             // 
             // dB닫기CToolStripMenuItem
             // 
             this.dB닫기CToolStripMenuItem.Name = "dB닫기CToolStripMenuItem";
-            this.dB닫기CToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dB닫기CToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.dB닫기CToolStripMenuItem.Text = "DB 닫기(C)";
             // 
             // 도구TToolStripMenuItem
             // 
             this.도구TToolStripMenuItem.Name = "도구TToolStripMenuItem";
-            this.도구TToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.도구TToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.도구TToolStripMenuItem.Text = "도구(T)";
             // 
             // 창WToolStripMenuItem
             // 
             this.창WToolStripMenuItem.Name = "창WToolStripMenuItem";
-            this.창WToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.창WToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.창WToolStripMenuItem.Text = "창(W)";
             // 
             // 도움말HToolStripMenuItem
             // 
             this.도움말HToolStripMenuItem.Name = "도움말HToolStripMenuItem";
-            this.도움말HToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.도움말HToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.도움말HToolStripMenuItem.Text = "도움말(H)";
             // 
             // tab_main
@@ -175,7 +175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tab_main.Controls.Add(this.tabPage1);
             this.tab_main.Controls.Add(this.tabPage2);
-            this.tab_main.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tab_main.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tab_main.Location = new System.Drawing.Point(12, 31);
             this.tab_main.Name = "tab_main";
             this.tab_main.SelectedIndex = 0;
@@ -185,10 +185,10 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.splitContainer1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1218, 632);
+            this.tabPage1.Size = new System.Drawing.Size(1218, 634);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DataGrid";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -209,7 +209,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(1212, 626);
+            this.splitContainer1.Size = new System.Drawing.Size(1212, 628);
             this.splitContainer1.SplitterDistance = 231;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -264,12 +264,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPATH.BackColor = System.Drawing.SystemColors.Control;
-            this.tbPATH.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbPATH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPATH.ForeColor = System.Drawing.SystemColors.InfoText;
             this.tbPATH.Location = new System.Drawing.Point(3, 3);
             this.tbPATH.Name = "tbPATH";
             this.tbPATH.ReadOnly = true;
-            this.tbPATH.Size = new System.Drawing.Size(657, 30);
+            this.tbPATH.Size = new System.Drawing.Size(657, 26);
             this.tbPATH.TabIndex = 1;
             // 
             // cbTable
@@ -278,12 +278,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbTable.BackColor = System.Drawing.SystemColors.Control;
-            this.cbTable.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTable.ForeColor = System.Drawing.SystemColors.InfoText;
             this.cbTable.FormattingEnabled = true;
             this.cbTable.Location = new System.Drawing.Point(666, 3);
             this.cbTable.Name = "cbTable";
-            this.cbTable.Size = new System.Drawing.Size(354, 31);
+            this.cbTable.Size = new System.Drawing.Size(354, 28);
             this.cbTable.TabIndex = 3;
             // 
             // dataGridView
@@ -297,15 +297,15 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 27;
-            this.dataGridView.Size = new System.Drawing.Size(1208, 385);
+            this.dataGridView.Size = new System.Drawing.Size(1208, 387);
             this.dataGridView.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1218, 635);
+            this.tabPage2.Size = new System.Drawing.Size(1218, 634);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
