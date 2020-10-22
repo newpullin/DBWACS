@@ -39,7 +39,7 @@
             this.mnu_CSVOPEN = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dB저장SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dB닫기CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_DBCLOSE = new System.Windows.Forms.ToolStripMenuItem();
             this.도구TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.창WToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +53,10 @@
             this.cbTable = new System.Windows.Forms.ComboBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,6 +66,7 @@
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -105,7 +110,7 @@
             this.dB열기OToolStripMenuItem,
             this.toolStripSeparator1,
             this.dB저장SToolStripMenuItem,
-            this.dB닫기CToolStripMenuItem});
+            this.mnu_DBCLOSE});
             this.프로젝트PToolStripMenuItem.Name = "프로젝트PToolStripMenuItem";
             this.프로젝트PToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.프로젝트PToolStripMenuItem.Text = "데이터(D)";
@@ -116,7 +121,7 @@
             this.mnu_DBOPEN,
             this.mnu_CSVOPEN});
             this.dB열기OToolStripMenuItem.Name = "dB열기OToolStripMenuItem";
-            this.dB열기OToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.dB열기OToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dB열기OToolStripMenuItem.Text = "열기(O)";
             // 
             // mnu_DBOPEN
@@ -136,19 +141,20 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // dB저장SToolStripMenuItem
             // 
             this.dB저장SToolStripMenuItem.Name = "dB저장SToolStripMenuItem";
-            this.dB저장SToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.dB저장SToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dB저장SToolStripMenuItem.Text = "DB 저장(S)";
             // 
-            // dB닫기CToolStripMenuItem
+            // mnu_DBCLOSE
             // 
-            this.dB닫기CToolStripMenuItem.Name = "dB닫기CToolStripMenuItem";
-            this.dB닫기CToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.dB닫기CToolStripMenuItem.Text = "DB 닫기(C)";
+            this.mnu_DBCLOSE.Name = "mnu_DBCLOSE";
+            this.mnu_DBCLOSE.Size = new System.Drawing.Size(180, 22);
+            this.mnu_DBCLOSE.Text = "DB 닫기(C)";
+            this.mnu_DBCLOSE.Click += new System.EventHandler(this.mnu_DBCLOSE_Click);
             // 
             // 도구TToolStripMenuItem
             // 
@@ -310,11 +316,45 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status1,
+            this.status2,
+            this.status3});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 679);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1250, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // status1
+            // 
+            this.status1.ActiveLinkColor = System.Drawing.Color.Transparent;
+            this.status1.BackColor = System.Drawing.SystemColors.Control;
+            this.status1.Name = "status1";
+            this.status1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // status2
+            // 
+            this.status2.ActiveLinkColor = System.Drawing.Color.Transparent;
+            this.status2.BackColor = System.Drawing.SystemColors.Control;
+            this.status2.Name = "status2";
+            this.status2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // status3
+            // 
+            this.status3.ActiveLinkColor = System.Drawing.Color.Transparent;
+            this.status3.BackColor = System.Drawing.SystemColors.Control;
+            this.status3.Name = "status3";
+            this.status3.Size = new System.Drawing.Size(0, 17);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(1250, 701);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tab_main);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -334,6 +374,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,8 +405,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnu_DBOPEN;
         private System.Windows.Forms.ToolStripMenuItem mnu_CSVOPEN;
         private System.Windows.Forms.ToolStripMenuItem dB저장SToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dB닫기CToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnu_DBCLOSE;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel status1;
+        private System.Windows.Forms.ToolStripStatusLabel status2;
+        private System.Windows.Forms.ToolStripStatusLabel status3;
     }
 }
 
