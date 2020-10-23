@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace DBWACS
 {
@@ -30,6 +31,10 @@ namespace DBWACS
             sConn = new SqlConnection();
             sCmd = new SqlCommand();
             connString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={file_path};Integrated Security=True;Connect Timeout=30";
+        }
+        public ConnectionState getStatus()
+        {
+            return sConn.State;
         }
 
         public void setConnString(string file_path)
@@ -170,7 +175,11 @@ namespace DBWACS
 
         public bool updateDB(String tableName, String colName, String value, String condition, MyMessageBox mmb = null)
         {
-            String sql = $"Update {tableName} SET {colName} = '{value}' WHERE {condition}";
+            if (value.Length == 0)
+            {
+                return false;
+            }
+            String sql = $"Update {tableName} SET {colName} = '{value.Trim()}' WHERE {condition}";
             sCmd.CommandText = sql;
             try
             {
@@ -191,9 +200,46 @@ namespace DBWACS
 
         public bool insertDB(String tableName, String[] rows, MyMessageBox mmb = null)
         {
-            String sql = $"INSERT {tableName} VALUES(" + String.Join(",", rows) + ");";
+            if (rows[0].Length == 0)
+            {
+                return false;
+            }
+            String sql = $"INSERT INTO {tableName} VALUES({String.Join(",", addComma(rows))});";
             sCmd.CommandText = sql;
 
+            try
+            {
+                sCmd.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                if (mmb != null)
+                {
+                    mmb.Show(e1.Message);
+                }
+                return false;
+            }
+
+            return true;
+        }
+        public String[] addComma(String[] target)
+        {
+            String[] commaed = new string[target.Length];
+            for(int i = 0; i < target.Length; i++)
+            {
+                commaed[i] = "'" + target[i] + "'";
+            }
+            return commaed;
+        }
+        public bool insertDB(String tableName, String[] cols, String[] rows, MyMessageBox mmb = null)
+        {
+            if(rows[0].Length == 0)
+            {
+                return false;
+            }
+            
+            String sql = $"INSERT INTO {tableName} ({String.Join(",", cols)}) VALUES({String.Join(",", addComma(rows))});";
+            sCmd.CommandText = sql;
             try
             {
                 sCmd.ExecuteNonQuery();
@@ -223,6 +269,28 @@ namespace DBWACS
             sr.Close();
             return result_list.ToArray();
         }
+        public bool delete(String table_name, String id, MyMessageBox mmb = null)
+        {
+            String sql = $"DELETE FROM {table_name} WHERE id = '{id}'";
+            sCmd.CommandText = sql;
+
+            try
+            {
+                sCmd.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                if (mmb != null)
+                {
+                    mmb.Show(e1.Message);
+                }
+                return false;
+            }
+
+            return true;
+
+        }
+        
         public String assumeTableName(String[] columns)
         {
             if(columns.Length < 2)
@@ -240,17 +308,9 @@ namespace DBWACS
                 bool allSame = true;
                 foreach (String col in columns)
                 {
-                    bool finded = false;
-                    for(int k = 0; k < table_columns.Length; k++)
-                    {
-                        if(col == table_columns[k])
-                        {
-                            finded = true;
-                            break;
-                        }
-                    }
+                    int index = Array.IndexOf(table_columns, col);
                     // 하나라도 일치 하지 않는게 있다면 다음 테이블 탐색
-                    if (!finded)
+                    if (index == -1)
                     {
                         allSame = false;
                         break;

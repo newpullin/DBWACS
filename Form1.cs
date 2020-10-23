@@ -107,8 +107,10 @@ namespace DBWACS
         {
             // DGVM을 지속적으로 업데이트 해준다.
             sync.syncDGVWADGVM(dataGridView, dgvM);
+            sync.syncDBWADGVM(sqlC, dgvM);
         }
 
+        // 행 추가
         private void tsmnuAddRow_Click(object sender, EventArgs e)
         {
             
@@ -120,10 +122,43 @@ namespace DBWACS
             dgvM.addRow(temp);
             dataGridView.Rows.Add();
             dgvC.Show(dataGridView, dgvM);
+            stsC.setSuccessStatus("Row Added!", 3);
         }
+
+        private void mnu_DBSave_Click(object sender, EventArgs e)
+        {
+            if(sqlC.getStatus() == ConnectionState.Open)
+            {
+                sync.syncDBWADGVM(sqlC, dgvM);
+                stsC.setSuccessStatus("DB Saved!", 1);
+            }
+            else
+            {
+                mmb.Show("DB를 열어주세요.");
+            }
+        }
+
+        //행 삭제
+        private void tsmnuDelRow_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView.SelectedCells[0].RowIndex;
+            if(index != -1)
+            {
+                dataGridView.Rows.RemoveAt(index);
+                String id = dgvM.getColumn(0)[index];
+                dgvM.delRow(index);
+                dgvC.Show(dataGridView, dgvM);
+                String table_name = sqlC.assumeTableName(dgvM.getColumns());
+                sqlC.delete(table_name, id);
+                stsC.setSuccessStatus("Row deleted!", 3);
+            }
+            
+        }
+
+
         //id 가 무조건 primary key라고 가정하고, id 있을 경우에만 업데이트가 가능하도록 한다.
         // primary key 찾아내는 방법을 잘 모르겠다.
-        // 행 추가, 행 삭제
+
 
     }
 }

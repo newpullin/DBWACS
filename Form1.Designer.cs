@@ -33,6 +33,7 @@ namespace DBWACS
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +43,7 @@ namespace DBWACS
             this.mnu_DBOPEN = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_CSVOPEN = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.dB저장SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_DBSave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_DBCLOSE = new System.Windows.Forms.ToolStripMenuItem();
             this.도구TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.창WToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,15 +57,14 @@ namespace DBWACS
             this.tbPATH = new System.Windows.Forms.TextBox();
             this.cbTable = new System.Windows.Forms.ComboBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmnuAddRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmnuDelRow = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmnuAddRow = new System.Windows.Forms.ToolStripMenuItem();
-            this.행삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
@@ -75,9 +75,27 @@ namespace DBWACS
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolStripSplitButton1
+            // 
+            toolStripSplitButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator2});
+            toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripSplitButton1.Margin = new System.Windows.Forms.Padding(1100, 2, 0, 0);
+            toolStripSplitButton1.Name = "toolStripSplitButton1";
+            toolStripSplitButton1.Size = new System.Drawing.Size(39, 24);
+            toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(71, 6);
             // 
             // menuStrip1
             // 
@@ -119,7 +137,7 @@ namespace DBWACS
             this.프로젝트PToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dB열기OToolStripMenuItem,
             this.toolStripSeparator1,
-            this.dB저장SToolStripMenuItem,
+            this.mnu_DBSave,
             this.mnu_DBCLOSE});
             this.프로젝트PToolStripMenuItem.Name = "프로젝트PToolStripMenuItem";
             this.프로젝트PToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
@@ -153,11 +171,12 @@ namespace DBWACS
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
-            // dB저장SToolStripMenuItem
+            // mnu_DBSave
             // 
-            this.dB저장SToolStripMenuItem.Name = "dB저장SToolStripMenuItem";
-            this.dB저장SToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.dB저장SToolStripMenuItem.Text = "DB 저장(S)";
+            this.mnu_DBSave.Name = "mnu_DBSave";
+            this.mnu_DBSave.Size = new System.Drawing.Size(224, 26);
+            this.mnu_DBSave.Text = "DB 저장(S)";
+            this.mnu_DBSave.Click += new System.EventHandler(this.mnu_DBSave_Click);
             // 
             // mnu_DBCLOSE
             // 
@@ -319,6 +338,29 @@ namespace DBWACS
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEndEdit);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmnuAddRow,
+            this.tsmnuDelRow});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            // 
+            // tsmnuAddRow
+            // 
+            this.tsmnuAddRow.Name = "tsmnuAddRow";
+            this.tsmnuAddRow.Size = new System.Drawing.Size(210, 24);
+            this.tsmnuAddRow.Text = "행추가";
+            this.tsmnuAddRow.Click += new System.EventHandler(this.tsmnuAddRow_Click);
+            // 
+            // tsmnuDelRow
+            // 
+            this.tsmnuDelRow.Name = "tsmnuDelRow";
+            this.tsmnuDelRow.Size = new System.Drawing.Size(210, 24);
+            this.tsmnuDelRow.Text = "행삭제";
+            this.tsmnuDelRow.Click += new System.EventHandler(this.tsmnuDelRow_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
@@ -364,46 +406,6 @@ namespace DBWACS
             this.status3.Name = "status3";
             this.status3.Size = new System.Drawing.Size(0, 20);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmnuAddRow,
-            this.행삭제ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 52);
-            // 
-            // tsmnuAddRow
-            // 
-            this.tsmnuAddRow.Name = "tsmnuAddRow";
-            this.tsmnuAddRow.Size = new System.Drawing.Size(123, 24);
-            this.tsmnuAddRow.Text = "행추가";
-            this.tsmnuAddRow.Click += new System.EventHandler(this.tsmnuAddRow_Click);
-            // 
-            // 행삭제ToolStripMenuItem
-            // 
-            this.행삭제ToolStripMenuItem.Name = "행삭제ToolStripMenuItem";
-            this.행삭제ToolStripMenuItem.Size = new System.Drawing.Size(123, 24);
-            this.행삭제ToolStripMenuItem.Text = "행삭제";
-            // 
-            // toolStripSplitButton1
-            // 
-            toolStripSplitButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator2});
-            toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            toolStripSplitButton1.Margin = new System.Windows.Forms.Padding(1100, 2, 0, 0);
-            toolStripSplitButton1.Name = "toolStripSplitButton1";
-            toolStripSplitButton1.Size = new System.Drawing.Size(39, 24);
-            toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -430,9 +432,9 @@ namespace DBWACS
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,7 +463,7 @@ namespace DBWACS
         private System.Windows.Forms.ToolStripMenuItem dB열기OToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnu_DBOPEN;
         private System.Windows.Forms.ToolStripMenuItem mnu_CSVOPEN;
-        private System.Windows.Forms.ToolStripMenuItem dB저장SToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnu_DBSave;
         private System.Windows.Forms.ToolStripMenuItem mnu_DBCLOSE;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -470,7 +472,7 @@ namespace DBWACS
         private System.Windows.Forms.ToolStripStatusLabel status3;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem tsmnuAddRow;
-        private ToolStripMenuItem 행삭제ToolStripMenuItem;
+        private ToolStripMenuItem tsmnuDelRow;
         private ToolStripSeparator toolStripSeparator2;
     }
 }

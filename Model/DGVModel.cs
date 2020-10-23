@@ -69,6 +69,16 @@ namespace DBWACS.Model
             }
             return return_string;
         }
+        public String[] getColumn(int index)
+        {
+            String[] return_string = new String[rows.Count];
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                return_string[i] = rows[i][index];
+            }
+            return return_string;
+        }
         public void addRow(String[] new_row)
         {
             List<String> temp = new List<string>();
