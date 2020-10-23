@@ -51,7 +51,7 @@ namespace DBWACS.Model
             String[] return_string = new String[columns.Count];
             for(int i = 0; i < columns.Count; i++)
             {
-                return_string[i] = columns[i];
+                return_string[i] = columns[i].ToLower();
             }
             return return_string;
         }

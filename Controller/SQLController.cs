@@ -107,7 +107,7 @@ namespace DBWACS
             String[] columns = new String[sr.FieldCount];
             for (int j = 0; j < sr.FieldCount; j++)
             {
-                columns[j] = sr.GetName(j);
+                columns[j] = sr.GetName(j).ToLower();
             }
             sr.Close();
             return columns;
@@ -117,7 +117,7 @@ namespace DBWACS
             String[] columns = new String[sr.FieldCount];
             for (int j = 0; j < sr.FieldCount; j++)
             {
-                columns[j] = sr.GetName(j);
+                columns[j] = sr.GetName(j).ToLower();
             }
             return columns;
         }
