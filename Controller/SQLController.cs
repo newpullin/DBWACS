@@ -172,14 +172,8 @@ namespace DBWACS
                 return null;
             }
         }
-
-        public bool updateDB(String tableName, String colName, String value, String condition, MyMessageBox mmb = null)
+        public bool execute(String sql, MyMessageBox mmb = null)
         {
-            if (value.Length == 0)
-            {
-                return false;
-            }
-            String sql = $"Update {tableName} SET {colName} = '{value.Trim()}' WHERE {condition}";
             sCmd.CommandText = sql;
             try
             {
@@ -197,6 +191,25 @@ namespace DBWACS
 
             return true;
         }
+        public bool createTable(String tableName, MyMessageBox mmb = null)
+        {
+            String sql = $"CREATE table {tableName} (ID INT NOT NULL);";
+            return execute(sql, mmb);
+        }
+        public bool deleteTable(String tableName, MyMessageBox mmb = null)
+        {
+            String sql = $"DROP table {tableName};";
+            return execute(sql, mmb);
+        }
+        public bool updateDB(String tableName, String colName, String value, String condition, MyMessageBox mmb = null)
+        {
+            if (value.Length == 0)
+            {
+                return false;
+            }
+            String sql = $"Update {tableName} SET {colName} = '{value.Trim()}' WHERE {condition}";
+            return execute(sql, mmb);
+        }
 
         public bool insertDB(String tableName, String[] rows, MyMessageBox mmb = null)
         {
@@ -205,22 +218,7 @@ namespace DBWACS
                 return false;
             }
             String sql = $"INSERT INTO {tableName} VALUES({String.Join(",", addComma(rows))});";
-            sCmd.CommandText = sql;
-
-            try
-            {
-                sCmd.ExecuteNonQuery();
-            }
-            catch (Exception e1)
-            {
-                if (mmb != null)
-                {
-                    mmb.Show(e1.Message);
-                }
-                return false;
-            }
-
-            return true;
+            return execute(sql, mmb);
         }
         public String[] addComma(String[] target)
         {
@@ -239,21 +237,7 @@ namespace DBWACS
             }
             
             String sql = $"INSERT INTO {tableName} ({String.Join(",", cols)}) VALUES({String.Join(",", addComma(rows))});";
-            sCmd.CommandText = sql;
-            try
-            {
-                sCmd.ExecuteNonQuery();
-            }
-            catch (Exception e1)
-            {
-                if (mmb != null)
-                {
-                    mmb.Show(e1.Message);
-                }
-                return false;
-            }
-
-            return true;
+            return execute(sql, mmb);
         }
         public String[] getIDs(String table_name)
         {
@@ -272,23 +256,7 @@ namespace DBWACS
         public bool delete(String table_name, String id, MyMessageBox mmb = null)
         {
             String sql = $"DELETE FROM {table_name} WHERE id = '{id}'";
-            sCmd.CommandText = sql;
-
-            try
-            {
-                sCmd.ExecuteNonQuery();
-            }
-            catch (Exception e1)
-            {
-                if (mmb != null)
-                {
-                    mmb.Show(e1.Message);
-                }
-                return false;
-            }
-
-            return true;
-
+            return execute(sql, mmb);
         }
         
         public String assumeTableName(String[] columns)

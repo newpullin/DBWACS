@@ -22,48 +22,17 @@ namespace DBWACS
             InitializeComponent();
             InitializeController();
         }
-
+        
         // 텍스트 박스에 있는 SQL을 실행합니다.
         private void btGo_Click(object sender, EventArgs e)
         {
-            int result = InputController.go(tbInput, dataGridView, sqlC, dgvC,dgvM ,fileC, mmb);
-            int status_num = 2;
-            if(result == 0)
-            {
-                stsC.setSuccessStatus("SELECT 문이 수행되었습니다.", status_num);
-            }
-            else if ( result == 1)
-            {
-                fileC.readDBandSHow(dataGridView, sqlC, dgvM, dgvC, InputController.getSelectedTable(cbTable));
-                stsC.setSuccessStatus("쿼리문이 수행되었습니다.", status_num);
-            }
-            else if (result == -1)
-            {
-                stsC.setWarningStatus("쿼리에 오류가 있습니다.", status_num);
-            }
-            // 콤보박스에 테이블을 유추해서 바꿔줍니다.
-            InputController.setComboBox(cbTable, sqlC.assumeTableName(dgvM.getColumns()));
-
-            
+            go();   
         }
 
         // DB를 열어서 내용을 표시합니다.
         private void mnu_DBOPEN_Click(object sender, EventArgs e)
         {
-            dataGridView.ReadOnly = false;
-            string file_path = fileC.getFilePath("DB 파일 (*.mdf)|*.mdf");
-            sqlC.setConnString(file_path);
-            if(sqlC.Open(mmb))
-            {
-                stsC.setSuccessStatus("DB Opend", 1);
-                InputController.setPath(tbPATH, file_path);
-                InputController.setComboBox(cbTable, sqlC.getTables());
-                fileC.readDBandSHow(dataGridView, sqlC, dgvM, dgvC, InputController.getSelectedTable(cbTable));
-            }
-            else
-            {
-                stsC.setWarningStatus("DB Open Failed", 1);
-            }
+            openDB();
         }
 
         //DB를 닫습니다.
@@ -89,11 +58,13 @@ namespace DBWACS
             if(result == "")
             {
                 stsC.setWarningStatus("CSV Open Failed...", 1);
+                stsC.setNomalStatus("", 2);
+                stsC.setNomalStatus("", 3);
             }
             else
             {
                 tbPATH.Text = result;
-                stsC.setSuccessStatus("CSV opened!", 1);
+                stsC.setSuccessStatus("CSV opened!", 1, true);
             }
 
         }
@@ -108,6 +79,7 @@ namespace DBWACS
             // DGVM을 지속적으로 업데이트 해준다.
             sync.syncDGVWADGVM(dataGridView, dgvM);
             sync.syncDBWADGVM(sqlC, dgvM);
+            stsC.setNomalStatus("Change Saved!", 3);
         }
 
         // 행 추가
@@ -122,7 +94,8 @@ namespace DBWACS
             dgvM.addRow(temp);
             dataGridView.Rows.Add();
             dgvC.Show(dataGridView, dgvM);
-            stsC.setSuccessStatus("Row Added!", 3);
+            stsC.setSuccessStatus("Row Added!", 2);
+            stsC.setNomalStatus("", 3);
         }
 
         private void mnu_DBSave_Click(object sender, EventArgs e)
@@ -155,9 +128,67 @@ namespace DBWACS
             
         }
 
+        private void 테이블추가ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Location = new Point((int)(this.Width / 2) + this.Location.X, ((int)(this.Height / 2) + this.Location.Y));
+            form2.ShowDialog();
+            String result = form2.getString();
+            if(result.Length > 0)
+            {
+                if(sqlC.createTable(result, mmb))
+                {
+                    stsC.setSuccessStatus("테이블 생성 성공!", 1, true);
+                    // 새로 생성된 테이블로 바뀌는게 자연스러운듯
+                    InputController.setComboBox(cbTable, sqlC.getTables());
+                    InputController.setComboBoxIndex(cbTable, result);
+                }
+                else
+                {
+                    stsC.setWarningStatus("테이블 생성 실패!", 1, true);
+                }
+            }
+        }
+
+        private void 테이블삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Location = new Point((int)(this.Width / 2) + this.Location.X, ((int)(this.Height / 2) + this.Location.Y));
+            form2.ShowDialog();
+            String result = form2.getString();
+            if (result.Length > 0)
+            {
+                if (sqlC.deleteTable(result, mmb))
+                {
+                    stsC.setSuccessStatus("테이블 삭제 성공!", 1, true);
+                    // 새로 생성된 테이블로 바뀌는게 자연스러운듯
+                    InputController.setComboBox(cbTable, sqlC.getTables());
+                }
+                else
+                {
+                    stsC.setWarningStatus("테이블 삭제 실패!", 1, true);
+                }
+            }
+        }
+
+        private void tbInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.Enter)
+            {
+                go();
+            }
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.O)
+            {
+                openDB();
+            }
+        }
+
 
         //id 가 무조건 primary key라고 가정하고, id 있을 경우에만 업데이트가 가능하도록 한다.
-        // primary key 찾아내는 방법을 잘 모르겠다.
 
 
     }

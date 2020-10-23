@@ -65,6 +65,10 @@ namespace DBWACS
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.테이블추가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cSV를DB로변환ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.테이블삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
@@ -138,7 +142,11 @@ namespace DBWACS
             this.dB열기OToolStripMenuItem,
             this.toolStripSeparator1,
             this.mnu_DBSave,
-            this.mnu_DBCLOSE});
+            this.mnu_DBCLOSE,
+            this.toolStripSeparator3,
+            this.테이블추가ToolStripMenuItem,
+            this.테이블삭제ToolStripMenuItem,
+            this.cSV를DB로변환ToolStripMenuItem});
             this.프로젝트PToolStripMenuItem.Name = "프로젝트PToolStripMenuItem";
             this.프로젝트PToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.프로젝트PToolStripMenuItem.Text = "데이터(D)";
@@ -261,6 +269,7 @@ namespace DBWACS
             this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbInput.Size = new System.Drawing.Size(1207, 211);
             this.tbInput.TabIndex = 6;
+            this.tbInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyDown);
             // 
             // tableLayoutPanel1
             // 
@@ -345,7 +354,7 @@ namespace DBWACS
             this.tsmnuAddRow,
             this.tsmnuDelRow});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 52);
             // 
             // tsmnuAddRow
             // 
@@ -406,6 +415,31 @@ namespace DBWACS
             this.status3.Name = "status3";
             this.status3.Size = new System.Drawing.Size(0, 20);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
+            // 
+            // 테이블추가ToolStripMenuItem
+            // 
+            this.테이블추가ToolStripMenuItem.Name = "테이블추가ToolStripMenuItem";
+            this.테이블추가ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.테이블추가ToolStripMenuItem.Text = "테이블 추가";
+            this.테이블추가ToolStripMenuItem.Click += new System.EventHandler(this.테이블추가ToolStripMenuItem_Click);
+            // 
+            // cSV를DB로변환ToolStripMenuItem
+            // 
+            this.cSV를DB로변환ToolStripMenuItem.Name = "cSV를DB로변환ToolStripMenuItem";
+            this.cSV를DB로변환ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cSV를DB로변환ToolStripMenuItem.Text = "CSV를 DB로 변환";
+            // 
+            // 테이블삭제ToolStripMenuItem
+            // 
+            this.테이블삭제ToolStripMenuItem.Name = "테이블삭제ToolStripMenuItem";
+            this.테이블삭제ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.테이블삭제ToolStripMenuItem.Text = "테이블 삭제";
+            this.테이블삭제ToolStripMenuItem.Click += new System.EventHandler(this.테이블삭제ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -416,10 +450,12 @@ namespace DBWACS
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "DBWACS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tab_main.ResumeLayout(false);
@@ -474,6 +510,10 @@ namespace DBWACS
         private ToolStripMenuItem tsmnuAddRow;
         private ToolStripMenuItem tsmnuDelRow;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem 테이블추가ToolStripMenuItem;
+        private ToolStripMenuItem cSV를DB로변환ToolStripMenuItem;
+        private ToolStripMenuItem 테이블삭제ToolStripMenuItem;
     }
 }
 

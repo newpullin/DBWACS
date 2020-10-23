@@ -34,17 +34,43 @@ namespace DBWACS.Controller
             myStrip.Items[num - 1].BackColor = backColor;
             myStrip.Items[num - 1].ForeColor = fontColor;
         }
-        public void setWarningStatus(string msg, int num)
+        public void setStatus(string msg, Color backColor, Color fontColor, int num = 1, bool AllClose = false)
         {
-            setStatus(msg, getWarningColor(), getWhiteColor(), num);
+            if (num > myStrip.Items.Count)
+            {
+                return;
+            }
+            if (msg.Length > MAX_MSG_LENGTH)
+            {
+                msg = msg.Substring(0, MAX_MSG_LENGTH);
+            }
+            for(int i = 0; i < myStrip.Items.Count-1; i++)
+            {
+                if(i == num - 1)
+                {
+                    myStrip.Items[i].Text = msg;
+                    myStrip.Items[i].BackColor = backColor;
+                    myStrip.Items[i].ForeColor = fontColor;
+                }
+                else
+                {
+                    myStrip.Items[i].Text = "";
+
+                }
+            }
+            
         }
-        public void setSuccessStatus(string msg, int num)
+        public void setWarningStatus(string msg, int num, bool AllClose = false)
         {
-            setStatus(msg, getSuccessColor(), getWhiteColor(), num);
+            setStatus(msg, getWarningColor(), getWhiteColor(), num, AllClose);
         }
-        public void setNomalStatus(string msg, int num)
+        public void setSuccessStatus(string msg, int num, bool AllClose = false)
         {
-            setStatus(msg, Color.Empty, getBlackColor(), num);
+            setStatus(msg, getSuccessColor(), getWhiteColor(), num, AllClose);
+        }
+        public void setNomalStatus(string msg, int num, bool AllClose = false)
+        {
+            setStatus(msg, Color.Empty, getBlackColor(), num, AllClose);
         }
         public Color getWarningColor()
         {

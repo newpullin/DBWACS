@@ -23,7 +23,7 @@ namespace DBWACS.Controller
                 cb.SelectedIndex = 0;
             }
         }
-        public static void setComboBox(ComboBox cb, String tableName)
+        public static void setComboBoxIndex(ComboBox cb, String tableName)
         {
             for (int i = 0; i < cb.Items.Count; i++)
             {
