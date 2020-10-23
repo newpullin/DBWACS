@@ -70,6 +70,7 @@
     <Compile Include="Model\CSVParser.cs" />
     <Compile Include="Model\DBParser.cs" />
     <Compile Include="Model\DGVModel.cs" />
+    <Compile Include="Model\Synchronizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controller\SQLController.cs" />

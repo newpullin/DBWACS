@@ -20,6 +20,7 @@ namespace DBWACS
         FileController fileC;
         DGVController dgvC;
         DGVModel dgvM;
+        Synchronizer sync;
 
         private void InitializeController()
         {
@@ -30,6 +31,7 @@ namespace DBWACS
             mmb = new MyMessageBox(true);
             dgvC = new DGVController();
             dgvM = new DGVModel();
+            sync = new Synchronizer();
         }
     }
 

@@ -41,12 +41,16 @@ namespace DBWACS
             {
                 stsC.setWarningStatus("쿼리에 오류가 있습니다.", status_num);
             }
+            // 콤보박스에 테이블을 유추해서 바꿔줍니다.
             InputController.setComboBox(cbTable, sqlC.assumeTableName(dgvM.getColumns()));
+
+            
         }
 
         // DB를 열어서 내용을 표시합니다.
         private void mnu_DBOPEN_Click(object sender, EventArgs e)
         {
+            dataGridView.ReadOnly = false;
             string file_path = fileC.getFilePath("DB 파일 (*.mdf)|*.mdf");
             sqlC.setConnString(file_path);
             if(sqlC.Open(mmb))
@@ -80,6 +84,7 @@ namespace DBWACS
         // CSV 파일을 열어서 내용을 표시합니다.
         private void mnu_CSVOPEN_Click(object sender, EventArgs e)
         {
+            dataGridView.ReadOnly = true;
             String result = fileC.readCSVandShow(dataGridView, dgvC, dgvM);
             if(result == "")
             {
@@ -100,16 +105,24 @@ namespace DBWACS
 
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            // 편집이 끝난 열에 대한 업데이트를 수행한다.
-            // 인덱스가 벗어난 경우, 벗어날 수가 없지 행추할 때 추가할건데
+            // DGVM을 지속적으로 업데이트 해준다.
+            sync.syncDGVWADGVM(dataGridView, dgvM);
         }
 
         private void tsmnuAddRow_Click(object sender, EventArgs e)
         {
-            //그냥 Model이랑 Controller랑 분리 시켜놨어야 하는데, 괜히 붙여서 생고생 하는구나
-            dgvM.addRow(new String[dgvM.getColumnSize()]);
+            
+            String[] temp = new String[dgvM.getColumnSize()];
+            for(int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = "";
+            }
+            dgvM.addRow(temp);
+            dataGridView.Rows.Add();
             dgvC.Show(dataGridView, dgvM);
         }
+        //id 가 무조건 primary key라고 가정하고, id 있을 경우에만 업데이트가 가능하도록 한다.
+        // primary key 찾아내는 방법을 잘 모르겠다.
         // 행 추가, 행 삭제
 
     }

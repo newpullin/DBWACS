@@ -42,15 +42,15 @@ namespace DBWACS
         {
             try
             {
-                if(sConn.State == ConnectionState.Open)
+                if (sConn.State == ConnectionState.Open)
                 {
                     sCmd.Connection = null;
-                    sConn.Close();  
+                    sConn.Close();
                 }
                 sConn = new SqlConnection();
                 sConn.ConnectionString = connString;
                 sConn.Open();
-                
+
                 sCmd.Connection = sConn;
                 return true;
             }
@@ -70,7 +70,7 @@ namespace DBWACS
                 sCmd.Connection = null;
                 sConn.Close();
                 return true;
-                
+
             }
             catch (Exception e1)
             {
@@ -86,13 +86,15 @@ namespace DBWACS
             DataTable dt = sConn.GetSchema("tables");
             int LEN = dt.Rows.Count;
             String[] columns = new String[LEN];
-            for(int i = 0; i < LEN; i++)
+            for (int i = 0; i < LEN; i++)
             {
                 columns[i] = dt.Rows[i].ItemArray[2].ToString();
             }
             return columns;
         }
-        
+
+
+
         public String[] getHeader(String tableName)
         {
             sCmd.CommandText = $"SELECT TOP 1 * FROM {tableName}";
@@ -174,15 +176,15 @@ namespace DBWACS
             {
                 sCmd.ExecuteNonQuery();
             }
-            catch(Exception e1)
+            catch (Exception e1)
             {
-                if(mmb != null)
+                if (mmb != null)
                 {
                     mmb.Show(e1.Message);
                 }
                 return false;
             }
-            
+
 
             return true;
         }
@@ -207,9 +209,26 @@ namespace DBWACS
 
             return true;
         }
-
-        public string assumeTableName(String[] columns)
+        public String[] getIDs(String table_name)
         {
+            String sql = "SELECT id FROM " + table_name;
+            sCmd.CommandText = sql;
+            SqlDataReader sr = sCmd.ExecuteReader();
+            List<String> result_list = new List<String>();
+            while (sr.Read())
+            {
+                result_list.Add(sr.GetValue(0).ToString());
+            }
+            // 사용후 닫음
+            sr.Close();
+            return result_list.ToArray();
+        }
+        public String assumeTableName(String[] columns)
+        {
+            if(columns.Length < 2)
+            {
+                return "";
+            }
             String[] tables = getTables();
             // 모든 테이블에 대해서
             for(int i = 0; i < tables.Length; i++)

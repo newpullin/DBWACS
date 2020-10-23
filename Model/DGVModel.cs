@@ -90,5 +90,10 @@ namespace DBWACS.Model
         {
             return columns.Count;
         }
+
+        public void setValueRow(int i, int k, String value)
+        { 
+            rows[i][k] = value;
+        }
     }
 }
