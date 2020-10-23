@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,8 +16,7 @@ namespace DBWACS
 {
     public partial class Form1 : Form
     {
-        
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +26,7 @@ namespace DBWACS
         // 텍스트 박스에 있는 SQL을 실행합니다.
         private void btGo_Click(object sender, EventArgs e)
         {
+            InputController.go(tbInput, dataGridView, sqlC, dgvC, fileC, mmb);
             
         }
 
@@ -36,7 +37,6 @@ namespace DBWACS
             sqlC.setConnString(file_path);
             if(sqlC.Open(mmb))
             {
-
                 stsC.setSuccessStatus("DB Opend", 1);
                 InputController.setPath(tbPATH, file_path);
                 InputController.setComboBox(cbTable, sqlC.getTables());
@@ -78,7 +78,10 @@ namespace DBWACS
             }
 
         }
-
-        
+        // table 선택이 바뀌면 그 테이블에 대한 내용을 출력합니다.
+        private void cbTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fileC.readDBandSHow(dataGridView, sqlC, dgvC, InputController.getSelectedTable(cbTable));
+        }
     }
 }

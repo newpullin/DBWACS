@@ -225,9 +225,9 @@ namespace DBWACS
             // 
             this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInput.BackColor = System.Drawing.SystemColors.Highlight;
+            this.tbInput.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.tbInput.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInput.ForeColor = System.Drawing.SystemColors.Info;
+            this.tbInput.ForeColor = System.Drawing.SystemColors.InfoText;
             this.tbInput.Location = new System.Drawing.Point(1, 64);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
@@ -293,6 +293,7 @@ namespace DBWACS
             this.cbTable.Name = "cbTable";
             this.cbTable.Size = new System.Drawing.Size(354, 33);
             this.cbTable.TabIndex = 3;
+            this.cbTable.SelectedIndexChanged += new System.EventHandler(this.cbTable_SelectedIndexChanged);
             // 
             // dataGridView
             // 

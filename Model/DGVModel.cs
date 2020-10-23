@@ -42,6 +42,7 @@ namespace DBWACS.Model
         }
         public void setRows(List<List<String>> rows)
         {
+            this.rows.Clear();
             this.rows = rows;
         }
         public String[] getColumns()

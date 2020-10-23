@@ -102,6 +102,15 @@ namespace DBWACS
             sr.Close();
             return columns;
         }
+        public String[] getHeader(SqlDataReader sr)
+        {
+            String[] columns = new String[sr.FieldCount];
+            for (int j = 0; j < sr.FieldCount; j++)
+            {
+                columns[j] = sr.GetName(j);
+            }
+            return columns;
+        }
         public List<List<String>> getRows(String tableName)
         {
             sCmd.CommandText = $"SELECT * FROM {tableName}";
@@ -121,6 +130,37 @@ namespace DBWACS
             // 사용후 닫음
             sr.Close();
             return rows;
+        }
+        public List<List<String>> getRows(SqlDataReader sr)
+        {
+            List<List<String>> rows = new List<List<String>>();
+            int index = 0;
+            while (sr.Read())
+            {
+                List<String> temp = new List<String>();
+                rows.Add(temp);
+                for (int j = 0; j < sr.FieldCount; j++)
+                {
+                    rows[index].Add(sr.GetValue(j).ToString());
+                }
+                index++;
+            }
+            // 빌려온거니까 닫으면 안됨
+            return rows;
+        }
+
+        public SqlDataReader go(String sql)
+        {
+            sCmd.CommandText = sql;
+            if (sql.ToUpper().Contains("SELECT"))
+            {
+                return sCmd.ExecuteReader();
+            }
+            else
+            {
+                sCmd.ExecuteNonQuery();
+                return null;
+            }
         }
     }
 }
