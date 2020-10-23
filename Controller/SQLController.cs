@@ -1,6 +1,7 @@
 ﻿using DBWACS.Controller;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -38,32 +39,18 @@ namespace DBWACS
             connString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={file_path};Integrated Security=True;Connect Timeout=30";
         }
 
-        public void Open(StatusController sc = null, MyMessageBox mb = null)
+        public Boolean Open(MyMessageBox mb = null)
         {
             try
             {
+                if(sConn.State == ConnectionState.Open)
+                {
+                    Close();
+                }
                 sConn.ConnectionString = connString;
                 sConn.Open();
                 sCmd.Connection = sConn;
-            }
-            catch(Exception e1)
-            {
-                if(mb != null)
-                {
-                    mb.Show(e1.Message);
-                }
-                if(sc != null)
-                {
-                    sc.setWarningStatus("DB Open Failed", 1);
-                }
-            }
-        }
-        public void Close(StatusController sc = null, MyMessageBox mb = null)
-        {
-            try
-            {
-                sConn.Close();
-                sc.setNomalStatus("DB Closed", 1);
+                return true;
             }
             catch (Exception e1)
             {
@@ -71,11 +58,69 @@ namespace DBWACS
                 {
                     mb.Show(e1.Message);
                 }
-                if (sc != null)
-                {
-                    sc.setWarningStatus("DB Close Failed", 1);
-                }
+                return false;
             }
+        }
+        public Boolean Close(MyMessageBox mb = null)
+        {
+            try
+            {
+                sConn.Close();
+                return true;
+                
+            }
+            catch (Exception e1)
+            {
+                if (mb != null)
+                {
+                    mb.Show(e1.Message);
+                }
+                return false;
+            }
+        }
+        public String[] getTables()
+        {
+            DataTable dt = sConn.GetSchema("tables");
+            int LEN = dt.Rows.Count;
+            String[] columns = new String[LEN];
+            for(int i = 0; i < LEN; i++)
+            {
+                columns[i] = dt.Rows[i].ItemArray[2].ToString();
+            }
+            return columns;
+        }
+        
+        public String[] getHeader(String tableName)
+        {
+            sCmd.CommandText = $"SELECT TOP 1 * FROM {tableName}";
+            SqlDataReader sr = sCmd.ExecuteReader();
+            String[] columns = new String[sr.FieldCount];
+            for (int j = 0; j < sr.FieldCount; j++)
+            {
+                columns[j] = sr.GetName(j);
+            }
+            sr.Close();
+            return columns;
+        }
+        public List<List<String>> getRows(String tableName)
+        {
+            sCmd.CommandText = $"SELECT * FROM {tableName}";
+            SqlDataReader sr = sCmd.ExecuteReader();
+            List<List<String>> rows = new List<List<String>>();
+            int index = 0;
+            while (sr.Read())
+            {
+                List<String> temp = new List<String>();
+                rows.Add(temp);
+                for (int j = 0; j < sr.FieldCount; j++)
+                {
+                    rows[index].Add(sr.GetValue(j).ToString());
+                }
+                index++;
+            }
+            // 사용후 닫음
+            sr.Close();
+            return rows;
         }
     }
 }
