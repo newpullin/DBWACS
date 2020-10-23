@@ -10,25 +10,7 @@ namespace DBWACS
 {
     public class DGVController
     {
-        DGVModel dvData;
-
-        public DGVController()
-        {
-            dvData = new DGVModel();
-        }
-        public void SetColumn(String[] columns)
-        {
-            dvData.setColumns(columns);
-        }
-        public void SetRow(String[][] rows)
-        {
-            dvData.setRows(rows);  
-        }
-        public void SetRow(List<List<String>> rows)
-        {
-            dvData.setRows(rows);
-        }
-        public void Show(DataGridView dv)
+        public void Show(DataGridView dv, DGVModel dvData)
         {
             dv.Columns.Clear();
             String[] columns = dvData.getColumns();

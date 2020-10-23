@@ -1,4 +1,5 @@
 ﻿using DBWACS.Controller;
+using DBWACS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace DBWACS
         MyMessageBox mmb;
         FileController fileC;
         DGVController dgvC;
+        DGVModel dgvM;
 
         private void InitializeController()
         {
@@ -27,6 +29,7 @@ namespace DBWACS
             //Message Box 출력을 활성화
             mmb = new MyMessageBox(true);
             dgvC = new DGVController();
+            dgvM = new DGVModel();
         }
     }
 

@@ -15,7 +15,6 @@ namespace DBWACS
         private SqlConnection sConn;
         private SqlCommand sCmd;
         private string connString;
-        private StatusController sc;
         private string file_path;
 
         public SQLController()
@@ -45,10 +44,13 @@ namespace DBWACS
             {
                 if(sConn.State == ConnectionState.Open)
                 {
-                    Close();
+                    sCmd.Connection = null;
+                    sConn.Close();  
                 }
+                sConn = new SqlConnection();
                 sConn.ConnectionString = connString;
                 sConn.Open();
+                
                 sCmd.Connection = sConn;
                 return true;
             }
@@ -65,6 +67,7 @@ namespace DBWACS
         {
             try
             {
+                sCmd.Connection = null;
                 sConn.Close();
                 return true;
                 
@@ -161,6 +164,88 @@ namespace DBWACS
                 sCmd.ExecuteNonQuery();
                 return null;
             }
+        }
+
+        public bool updateDB(String tableName, String colName, String value, String condition, MyMessageBox mmb = null)
+        {
+            String sql = $"Update {tableName} SET {colName} = '{value}' WHERE {condition}";
+            sCmd.CommandText = sql;
+            try
+            {
+                sCmd.ExecuteNonQuery();
+            }
+            catch(Exception e1)
+            {
+                if(mmb != null)
+                {
+                    mmb.Show(e1.Message);
+                }
+                return false;
+            }
+            
+
+            return true;
+        }
+
+        public bool insertDB(String tableName, String[] rows, MyMessageBox mmb = null)
+        {
+            String sql = $"INSERT {tableName} VALUES(" + String.Join(",", rows) + ");";
+            sCmd.CommandText = sql;
+
+            try
+            {
+                sCmd.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                if (mmb != null)
+                {
+                    mmb.Show(e1.Message);
+                }
+                return false;
+            }
+
+            return true;
+        }
+
+        public string assumeTableName(String[] columns)
+        {
+            String[] tables = getTables();
+            // 모든 테이블에 대해서
+            for(int i = 0; i < tables.Length; i++)
+            {
+                int value = 0;
+                // 테이블의 컬럼들을 구하고
+                String[] table_columns = getHeader(tables[i]);
+                // 주어진 컬럼들이 테이블의 컬럼들과 모두 일치하는 지확인
+                bool allSame = true;
+                foreach (String col in columns)
+                {
+                    bool finded = false;
+                    for(int k = 0; k < table_columns.Length; k++)
+                    {
+                        if(col == table_columns[k])
+                        {
+                            finded = true;
+                            break;
+                        }
+                    }
+                    // 하나라도 일치 하지 않는게 있다면 다음 테이블 탐색
+                    if (!finded)
+                    {
+                        allSame = false;
+                        break;
+                    }
+                }
+                //모두 같은게 있다면 그 테이블 이름 반환(모두 같은게 여러개일 수 있는 상황은 일단 무시)
+                if(allSame)
+                {
+                    return tables[i];
+                }
+
+            }
+            // 일치하는게 없으면
+            return "";
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DBWACS.Model
 {
-    class DGVModel
+    public class DGVModel
     {
         private List<String> columns;
         private List<List<String>> rows;
@@ -83,6 +84,11 @@ namespace DBWACS.Model
         public void delRow(int index)
         {
             rows.RemoveAt(index);
+        }
+
+        public int getColumnSize()
+        {
+            return columns.Count;
         }
     }
 }

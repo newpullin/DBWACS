@@ -26,8 +26,22 @@ namespace DBWACS
         // 텍스트 박스에 있는 SQL을 실행합니다.
         private void btGo_Click(object sender, EventArgs e)
         {
-            InputController.go(tbInput, dataGridView, sqlC, dgvC, fileC, mmb);
-            
+            int result = InputController.go(tbInput, dataGridView, sqlC, dgvC,dgvM ,fileC, mmb);
+            int status_num = 2;
+            if(result == 0)
+            {
+                stsC.setSuccessStatus("SELECT 문이 수행되었습니다.", status_num);
+            }
+            else if ( result == 1)
+            {
+                fileC.readDBandSHow(dataGridView, sqlC, dgvM, dgvC, InputController.getSelectedTable(cbTable));
+                stsC.setSuccessStatus("쿼리문이 수행되었습니다.", status_num);
+            }
+            else if (result == -1)
+            {
+                stsC.setWarningStatus("쿼리에 오류가 있습니다.", status_num);
+            }
+            InputController.setComboBox(cbTable, sqlC.assumeTableName(dgvM.getColumns()));
         }
 
         // DB를 열어서 내용을 표시합니다.
@@ -40,7 +54,7 @@ namespace DBWACS
                 stsC.setSuccessStatus("DB Opend", 1);
                 InputController.setPath(tbPATH, file_path);
                 InputController.setComboBox(cbTable, sqlC.getTables());
-                fileC.readDBandSHow(dataGridView, sqlC, dgvC, InputController.getSelectedTable(cbTable));
+                fileC.readDBandSHow(dataGridView, sqlC, dgvM, dgvC, InputController.getSelectedTable(cbTable));
             }
             else
             {
@@ -66,7 +80,7 @@ namespace DBWACS
         // CSV 파일을 열어서 내용을 표시합니다.
         private void mnu_CSVOPEN_Click(object sender, EventArgs e)
         {
-            String result = fileC.readCSVandShow(dataGridView, dgvC);
+            String result = fileC.readCSVandShow(dataGridView, dgvC, dgvM);
             if(result == "")
             {
                 stsC.setWarningStatus("CSV Open Failed...", 1);
@@ -81,7 +95,22 @@ namespace DBWACS
         // table 선택이 바뀌면 그 테이블에 대한 내용을 출력합니다.
         private void cbTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            fileC.readDBandSHow(dataGridView, sqlC, dgvC, InputController.getSelectedTable(cbTable));
+            fileC.readDBandSHow(dataGridView, sqlC, dgvM, dgvC, InputController.getSelectedTable(cbTable));
         }
+
+        private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // 편집이 끝난 열에 대한 업데이트를 수행한다.
+            // 인덱스가 벗어난 경우, 벗어날 수가 없지 행추할 때 추가할건데
+        }
+
+        private void tsmnuAddRow_Click(object sender, EventArgs e)
+        {
+            //그냥 Model이랑 Controller랑 분리 시켜놨어야 하는데, 괜히 붙여서 생고생 하는구나
+            dgvM.addRow(new String[dgvM.getColumnSize()]);
+            dgvC.Show(dataGridView, dgvM);
+        }
+        // 행 추가, 행 삭제
+
     }
 }

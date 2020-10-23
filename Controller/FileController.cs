@@ -31,7 +31,7 @@ namespace DBWACS
             }
             return "";
         }
-        public string readCSVandShow(DataGridView dv, DGVController dc)
+        public string readCSVandShow(DataGridView dv, DGVController dc, DGVModel dm)
         {
             string file_path = getFilePath("CSV 파일 (*.csv)|*.csv");
             if (file_path.Length > 0)
@@ -41,9 +41,9 @@ namespace DBWACS
                     StreamReader sr = new StreamReader(file_path);
                     CSVParser scvP = new CSVParser();
                     scvP.parsing(sr);
-                    dc.SetColumn(scvP.getColumns());
-                    dc.SetRow(scvP.getRows());
-                    dc.Show(dv);
+                    dm.setColumns(scvP.getColumns());
+                    dm.setRows(scvP.getRows());
+                    dc.Show(dv, dm);
                     sr.Close();
                 }
                 catch(Exception e1)
@@ -55,12 +55,12 @@ namespace DBWACS
             return file_path;
         }
 
-        public Boolean readDBandSHow(DataGridView dv, SQLController sc, DGVController dc, String table_name)
+        public Boolean readDBandSHow(DataGridView dv, SQLController sc, DGVModel dm ,DGVController dc, String table_name)
         {
             try {
-                dc.SetColumn(sc.getHeader(table_name));
-                dc.SetRow(sc.getRows(table_name));
-                dc.Show(dv); 
+                dm.setColumns(sc.getHeader(table_name));
+                dm.setRows(sc.getRows(table_name));
+                dc.Show(dv, dm); 
             }
             catch(Exception e1)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBWACS.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -22,6 +23,17 @@ namespace DBWACS.Controller
                 cb.SelectedIndex = 0;
             }
         }
+        public static void setComboBox(ComboBox cb, String tableName)
+        {
+            for (int i = 0; i < cb.Items.Count; i++)
+            {
+                if (tableName == cb.Items[i].ToString())
+                {
+                    cb.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
         public static string getSelectedTable(ComboBox cb)
         {
             return cb.SelectedItem.ToString();
@@ -32,7 +44,7 @@ namespace DBWACS.Controller
             tb.Text = path;
         }
 
-        public static bool go(TextBox tbInput, DataGridView dataGridView ,SQLController sqlC, DGVController dgvC, FileController fileC, MyMessageBox mmb = null)
+        public static int go(TextBox tbInput, DataGridView dataGridView ,SQLController sqlC, DGVController dgvC,DGVModel dgvM, FileController fileC, MyMessageBox mmb = null)
         {
             string sSql;
             if (tbInput.SelectedText.Length > 5)
@@ -50,13 +62,16 @@ namespace DBWACS.Controller
 
                 if (sr != null)
                 {
-                    dgvC.SetColumn(sqlC.getHeader(sr));
-                    dgvC.SetRow(sqlC.getRows(sr));
+                    dgvM.setColumns(sqlC.getHeader(sr));
+                    dgvM.setRows(sqlC.getRows(sr));
                     sr.Close();
-                    dgvC.Show(dataGridView);
+                    dgvC.Show(dataGridView, dgvM);
+                    return 0;
                 }
-
-                
+                else
+                {
+                    return 1;
+                }
             }
             catch(Exception e)
             {
@@ -64,9 +79,8 @@ namespace DBWACS.Controller
                 {
                     mmb.Show(e.Message);
                 }
-                return false;
+                return -1;
             }
-            return true;
         }
     }
 }
