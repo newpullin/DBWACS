@@ -45,6 +45,10 @@ namespace DBWACS
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnu_DBSave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_DBCLOSE = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.테이블추가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.테이블삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cSV를DB로변환ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도구TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.창WToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,15 +64,11 @@ namespace DBWACS
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmnuAddRow = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmnuDelRow = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Tab2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.status3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.테이블추가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cSV를DB로변환ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.테이블삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
@@ -112,6 +112,7 @@ namespace DBWACS
             this.도구TToolStripMenuItem,
             this.창WToolStripMenuItem,
             this.도움말HToolStripMenuItem});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1250, 28);
@@ -157,7 +158,7 @@ namespace DBWACS
             this.mnu_DBOPEN,
             this.mnu_CSVOPEN});
             this.dB열기OToolStripMenuItem.Name = "dB열기OToolStripMenuItem";
-            this.dB열기OToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dB열기OToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.dB열기OToolStripMenuItem.Text = "열기(O)";
             // 
             // mnu_DBOPEN
@@ -177,21 +178,46 @@ namespace DBWACS
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // mnu_DBSave
             // 
             this.mnu_DBSave.Name = "mnu_DBSave";
-            this.mnu_DBSave.Size = new System.Drawing.Size(224, 26);
+            this.mnu_DBSave.Size = new System.Drawing.Size(210, 26);
             this.mnu_DBSave.Text = "DB 저장(S)";
             this.mnu_DBSave.Click += new System.EventHandler(this.mnu_DBSave_Click);
             // 
             // mnu_DBCLOSE
             // 
             this.mnu_DBCLOSE.Name = "mnu_DBCLOSE";
-            this.mnu_DBCLOSE.Size = new System.Drawing.Size(224, 26);
+            this.mnu_DBCLOSE.Size = new System.Drawing.Size(210, 26);
             this.mnu_DBCLOSE.Text = "DB 닫기(C)";
             this.mnu_DBCLOSE.Click += new System.EventHandler(this.mnu_DBCLOSE_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(207, 6);
+            // 
+            // 테이블추가ToolStripMenuItem
+            // 
+            this.테이블추가ToolStripMenuItem.Name = "테이블추가ToolStripMenuItem";
+            this.테이블추가ToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.테이블추가ToolStripMenuItem.Text = "테이블 추가";
+            this.테이블추가ToolStripMenuItem.Click += new System.EventHandler(this.테이블추가ToolStripMenuItem_Click);
+            // 
+            // 테이블삭제ToolStripMenuItem
+            // 
+            this.테이블삭제ToolStripMenuItem.Name = "테이블삭제ToolStripMenuItem";
+            this.테이블삭제ToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.테이블삭제ToolStripMenuItem.Text = "테이블 삭제";
+            this.테이블삭제ToolStripMenuItem.Click += new System.EventHandler(this.테이블삭제ToolStripMenuItem_Click);
+            // 
+            // cSV를DB로변환ToolStripMenuItem
+            // 
+            this.cSV를DB로변환ToolStripMenuItem.Name = "cSV를DB로변환ToolStripMenuItem";
+            this.cSV를DB로변환ToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.cSV를DB로변환ToolStripMenuItem.Text = "CSV를 DB로 변환";
             // 
             // 도구TToolStripMenuItem
             // 
@@ -217,24 +243,24 @@ namespace DBWACS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tab_main.Controls.Add(this.tabPage1);
-            this.tab_main.Controls.Add(this.tabPage2);
+            this.tab_main.Controls.Add(this.Tab2);
             this.tab_main.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tab_main.Location = new System.Drawing.Point(12, 31);
+            this.tab_main.Location = new System.Drawing.Point(52, 52);
             this.tab_main.Name = "tab_main";
             this.tab_main.SelectedIndex = 0;
-            this.tab_main.Size = new System.Drawing.Size(1226, 664);
+            this.tab_main.Size = new System.Drawing.Size(1150, 595);
             this.tab_main.TabIndex = 1;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(230)))), ((int)(((byte)(150)))));
             this.tabPage1.Controls.Add(this.splitContainer1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1218, 631);
+            this.tabPage1.Size = new System.Drawing.Size(1142, 562);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DataGrid";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -245,29 +271,31 @@ namespace DBWACS
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
             this.splitContainer1.Panel1.Controls.Add(this.tbInput);
             this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(1212, 625);
-            this.splitContainer1.SplitterDistance = 229;
+            this.splitContainer1.Size = new System.Drawing.Size(1136, 556);
+            this.splitContainer1.SplitterDistance = 203;
             this.splitContainer1.TabIndex = 0;
             // 
             // tbInput
             // 
-            this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInput.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.tbInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(235)))));
             this.tbInput.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInput.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.tbInput.Location = new System.Drawing.Point(1, 64);
+            this.tbInput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tbInput.Location = new System.Drawing.Point(17, 64);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
             this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbInput.Size = new System.Drawing.Size(1207, 211);
+            this.tbInput.Size = new System.Drawing.Size(1092, 126);
             this.tbInput.TabIndex = 6;
             this.tbInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyDown);
             // 
@@ -282,11 +310,11 @@ namespace DBWACS
             this.tableLayoutPanel1.Controls.Add(this.btGo, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tbPATH, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbTable, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 8);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1206, 34);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1130, 50);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // btGo
@@ -294,12 +322,14 @@ namespace DBWACS
             this.btGo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btGo.Location = new System.Drawing.Point(1026, 3);
+            this.btGo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(90)))), ((int)(((byte)(130)))));
+            this.btGo.ForeColor = System.Drawing.Color.White;
+            this.btGo.Location = new System.Drawing.Point(950, 3);
             this.btGo.Name = "btGo";
-            this.btGo.Size = new System.Drawing.Size(177, 28);
+            this.btGo.Size = new System.Drawing.Size(177, 44);
             this.btGo.TabIndex = 4;
             this.btGo.Text = "go";
-            this.btGo.UseVisualStyleBackColor = true;
+            this.btGo.UseVisualStyleBackColor = false;
             this.btGo.Click += new System.EventHandler(this.btGo_Click);
             // 
             // tbPATH
@@ -307,13 +337,13 @@ namespace DBWACS
             this.tbPATH.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPATH.BackColor = System.Drawing.SystemColors.Control;
+            this.tbPATH.BackColor = System.Drawing.Color.White;
             this.tbPATH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPATH.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.tbPATH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.tbPATH.Location = new System.Drawing.Point(3, 3);
             this.tbPATH.Name = "tbPATH";
             this.tbPATH.ReadOnly = true;
-            this.tbPATH.Size = new System.Drawing.Size(657, 30);
+            this.tbPATH.Size = new System.Drawing.Size(581, 30);
             this.tbPATH.TabIndex = 1;
             // 
             // cbTable
@@ -321,11 +351,11 @@ namespace DBWACS
             this.cbTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbTable.BackColor = System.Drawing.SystemColors.Control;
+            this.cbTable.BackColor = System.Drawing.Color.White;
             this.cbTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbTable.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.cbTable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.cbTable.FormattingEnabled = true;
-            this.cbTable.Location = new System.Drawing.Point(666, 3);
+            this.cbTable.Location = new System.Drawing.Point(590, 3);
             this.cbTable.Name = "cbTable";
             this.cbTable.Size = new System.Drawing.Size(354, 33);
             this.cbTable.TabIndex = 3;
@@ -336,14 +366,14 @@ namespace DBWACS
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(60)))), ((int)(((byte)(50)))));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView.Location = new System.Drawing.Point(1, 3);
+            this.dataGridView.Location = new System.Drawing.Point(17, 16);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 27;
-            this.dataGridView.Size = new System.Drawing.Size(1208, 386);
+            this.dataGridView.Size = new System.Drawing.Size(1092, 317);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEndEdit);
             // 
@@ -359,26 +389,26 @@ namespace DBWACS
             // tsmnuAddRow
             // 
             this.tsmnuAddRow.Name = "tsmnuAddRow";
-            this.tsmnuAddRow.Size = new System.Drawing.Size(210, 24);
+            this.tsmnuAddRow.Size = new System.Drawing.Size(123, 24);
             this.tsmnuAddRow.Text = "행추가";
             this.tsmnuAddRow.Click += new System.EventHandler(this.tsmnuAddRow_Click);
             // 
             // tsmnuDelRow
             // 
             this.tsmnuDelRow.Name = "tsmnuDelRow";
-            this.tsmnuDelRow.Size = new System.Drawing.Size(210, 24);
+            this.tsmnuDelRow.Size = new System.Drawing.Size(123, 24);
             this.tsmnuDelRow.Text = "행삭제";
             this.tsmnuDelRow.Click += new System.EventHandler(this.tsmnuDelRow_Click);
             // 
-            // tabPage2
+            // Tab2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1218, 631);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.Tab2.BackColor = System.Drawing.Color.Transparent;
+            this.Tab2.Location = new System.Drawing.Point(4, 29);
+            this.Tab2.Name = "Tab2";
+            this.Tab2.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab2.Size = new System.Drawing.Size(1142, 562);
+            this.Tab2.TabIndex = 1;
+            this.Tab2.Text = "Tab2";
             // 
             // statusStrip1
             // 
@@ -415,35 +445,10 @@ namespace DBWACS
             this.status3.Name = "status3";
             this.status3.Size = new System.Drawing.Size(0, 20);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
-            // 
-            // 테이블추가ToolStripMenuItem
-            // 
-            this.테이블추가ToolStripMenuItem.Name = "테이블추가ToolStripMenuItem";
-            this.테이블추가ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.테이블추가ToolStripMenuItem.Text = "테이블 추가";
-            this.테이블추가ToolStripMenuItem.Click += new System.EventHandler(this.테이블추가ToolStripMenuItem_Click);
-            // 
-            // cSV를DB로변환ToolStripMenuItem
-            // 
-            this.cSV를DB로변환ToolStripMenuItem.Name = "cSV를DB로변환ToolStripMenuItem";
-            this.cSV를DB로변환ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.cSV를DB로변환ToolStripMenuItem.Text = "CSV를 DB로 변환";
-            // 
-            // 테이블삭제ToolStripMenuItem
-            // 
-            this.테이블삭제ToolStripMenuItem.Name = "테이블삭제ToolStripMenuItem";
-            this.테이블삭제ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.테이블삭제ToolStripMenuItem.Text = "테이블 삭제";
-            this.테이블삭제ToolStripMenuItem.Click += new System.EventHandler(this.테이블삭제ToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Highlight;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(250)))), ((int)(((byte)(205)))));
             this.ClientSize = new System.Drawing.Size(1250, 701);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tab_main);
@@ -488,7 +493,7 @@ namespace DBWACS
         private System.Windows.Forms.ToolStripMenuItem 도움말HToolStripMenuItem;
         private System.Windows.Forms.TabControl tab_main;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage Tab2;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btGo;
         private System.Windows.Forms.ComboBox cbTable;
